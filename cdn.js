@@ -95,7 +95,7 @@ window.onload = document.addEventListener('DOMContentLoaded', function() {
         [
           "src",
           // `https://dashboard-petra.netlify.app/`]
-        `${clientInfo.link}/?src=${clientInfo.src}&amount=${clientInfo.amount}&url=${clientInfo.url}&name=${clientInfo.name}&email=${clientInfo.email}&qty=${clientInfo.qty}&description=${clientInfo.description}&key=${clientInfo.key}&amount_in_btc=${clientInfo.amount_in_btc}&wallet_address=${clientInfo.wallet_address}`]
+          `${clientInfo.link}/?amount=${clientInfo.amount}&email=${clientInfo.email}&key=${clientInfo.key}`]
       ],
         dStyle.dIframe
       )
@@ -111,7 +111,7 @@ window.onload = document.addEventListener('DOMContentLoaded', function() {
         [
           "src",
           // `https://dashboard-petra.netlify.app/`]
-          `${clientInfo.link}/?src=${clientInfo.src}&amount=${clientInfo.amount}&url=${clientInfo.url}&name=${clientInfo.name}&email=${clientInfo.email}&qty=${clientInfo.qty}&description=${clientInfo.description}&key=${clientInfo.key}&amount_in_btc=${clientInfo.amount_in_btc}&wallet_address=${clientInfo.wallet_address}`]
+          `${clientInfo.link}/?amount=${clientInfo.amount}&email=${clientInfo.email}&key=${clientInfo.key}`]
         ],
         dStyle.dIframe
       )
