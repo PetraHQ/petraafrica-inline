@@ -1,10 +1,10 @@
 
 const dStyle = {
   dbutton2: `
-    background-color: #1dbc86;
+    background-color: #F7A200;
     border: none;
     border-radius: 3px;
-    color: white;
+    color: #2D374C;
     text-align: center;
     text-decoration: none;
     display: inline-flex;
@@ -59,18 +59,18 @@ const dStyle = {
   `
 }
 
-function mover(){ document.getElementById('button').style.cssText = `${dStyle.dbutton2}; ${document.getElementById('button').attributes.style.value}; opacity:0.8` }
-function moout(){ document.getElementById('button').style.cssText = `${dStyle.dbutton2}; ${document.getElementById('button').attributes.style.value}; opacity:1` }
+function mover(){ document.getElementById('petra_checkout_button').style.cssText = `${dStyle.dbutton2}; ${document.getElementById('petra_checkout_button').attributes.style.value}; opacity:0.8` }
+function moout(){ document.getElementById('petra_checkout_button').style.cssText = `${dStyle.dbutton2}; ${document.getElementById('petra_checkout_button').attributes.style.value}; opacity:1` }
 
 window.onload = document.addEventListener('DOMContentLoaded', function() {
 
   var bodyDocument = document.getElementsByTagName("body")[0]
   bodyDocument.setAttribute("onclick", "closeOnModal()");
-  // console.log(document.getElementById('button').attributes.style.value)
-  document.getElementById('button').style.cssText = `${dStyle.dbutton2}; ${document.getElementById('button').attributes.style.value}`
-  document.getElementById('button').setAttribute("onclick", "runIframe()")
-  document.getElementById('button').setAttribute("onmouseover", "mover()")
-  document.getElementById('button').setAttribute("onmouseout", "moout()")
+  // console.log(document.getElementById('petra_checkout_button').attributes.style.value)
+  document.getElementById('petra_checkout_button').style.cssText = `${dStyle.dbutton2}; ${document.getElementById('petra_checkout_button').attributes.style.value}`
+  document.getElementById('petra_checkout_button').setAttribute("onclick", "runIframe()")
+  document.getElementById('petra_checkout_button').setAttribute("onmouseover", "mover()")
+  document.getElementById('petra_checkout_button').setAttribute("onmouseout", "moout()")
 
   // Create Modal
   createAnElement("pass", "div", ["myModal"], `display: none`)
@@ -91,7 +91,12 @@ window.onload = document.addEventListener('DOMContentLoaded', function() {
       createAnElement(
         "myModal2",
         "iframe",
-        ["dFrame", ["src",`https://app.ourpass.co/view/?src=${clientInfo.src}&amount=${clientInfo.amount}&url=${clientInfo.url}&name=${clientInfo.name}&email=${clientInfo.email}&qty=${clientInfo.qty}&description=${clientInfo.description}&key=${clientInfo.key}`]],
+        ["dFrame",
+        [
+          "src",
+          // `https://dashboard-petra.netlify.app/`]
+        `${clientInfo.link}/?src=${clientInfo.src}&amount=${clientInfo.amount}&url=${clientInfo.url}&name=${clientInfo.name}&email=${clientInfo.email}&qty=${clientInfo.qty}&description=${clientInfo.description}&key=${clientInfo.key}&amount_in_btc=${clientInfo.amount_in_btc}&wallet_address=${clientInfo.wallet_address}`]
+      ],
         dStyle.dIframe
       )
 
@@ -102,7 +107,12 @@ window.onload = document.addEventListener('DOMContentLoaded', function() {
       createAnElement(
         "myModal2",
         "iframe",
-        ["dFrame", ["src",`https://app.ourpass.co/view/?src=${clientInfo.src}&amount=${clientInfo.amount}&url=${clientInfo.url}&name=${clientInfo.name}&email=${clientInfo.email}&qty=${clientInfo.qty}&description=${clientInfo.description}&key=${clientInfo.key}`]],
+        ["dFrame",
+        [
+          "src",
+          // `https://dashboard-petra.netlify.app/`]
+          `${clientInfo.link}/?src=${clientInfo.src}&amount=${clientInfo.amount}&url=${clientInfo.url}&name=${clientInfo.name}&email=${clientInfo.email}&qty=${clientInfo.qty}&description=${clientInfo.description}&key=${clientInfo.key}&amount_in_btc=${clientInfo.amount_in_btc}&wallet_address=${clientInfo.wallet_address}`]
+        ],
         dStyle.dIframe
       )
       window.OncloseData = clientInfo.onClose
@@ -135,7 +145,7 @@ window.onload = document.addEventListener('DOMContentLoaded', function() {
     modalDiv.setAttribute("id", elementId[0]);
     if(elementId.length > 1)modalDiv.setAttribute(`${elementId[1][0]}`, `${elementId[1][1]}`);
     if (parentId == "pass") {
-      var dParentElement = document.getElementById("button").parentNode
+      var dParentElement = document.getElementById("petra_checkout_button").parentNode
       dParentElement.appendChild(modalDiv);
     } else document.getElementById(parentId).appendChild(modalDiv);
 
@@ -150,14 +160,14 @@ window.onload = document.addEventListener('DOMContentLoaded', function() {
 
   window.iframeData = function(dataFunc, onclose, onSuccess){
     window.addEventListener('message', function(event) {
-      if (event.origin == 'https://app.ourpass.co'){
-        if(event.data == 'false pass'){
+      if (event.origin == 'http://localhost:8080'){
+        if(event.data == 'false petra'){
           dataFunc.style.display = "none"
           var element = dataFunc.lastChild.children.dFrame;
           element.parentNode.removeChild(element);
           onclose()
         }
-        if(event.data == 'false pass1'){
+        if(event.data == 'false petra1'){
           dataFunc.style.display = "none"
           var element = dataFunc.lastChild.children.dFrame;
           element.parentNode.removeChild(element);
